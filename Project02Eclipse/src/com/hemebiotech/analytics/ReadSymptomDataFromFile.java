@@ -1,47 +1,48 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Simple brute force implementation
- *
- */
-public class ReadSymptomDataFromFile implements ISymptomReader {
-
-	private String filepath;
+public class ReadSymptomDataFromFile {
 	
-	/**
-	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
-	 */
-	public ReadSymptomDataFromFile (String filepath) {
-		this.filepath = filepath;
-	}
-	
-	@Override
-	public List<String> GetSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
+	 /**The method allows to read a file. 
+		It takes in parameter a string
+		The method returns an unordered list without taking into account the duplicates.
+	**/	
+		private String filepath;
 		
-		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
-				String line = reader.readLine();
-				
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		public ReadSymptomDataFromFile(String filepath) {
+			this.filepath = filepath;
 		}
-		
-		return result;
-	}
+
+		public ReadSymptomDataFromFile() {	
+		}
+
+		public List<String> GetListSymptome(String filepath){	 
+			ArrayList<String> result = new ArrayList<String>();
+			String s;	
+				try {
+					File f = new File(filepath);
+					FileReader fr = new FileReader(f);
+					BufferedReader br = new BufferedReader(fr); 
+							
+					while((s=br.readLine())!=null){		
+					result.add(s);
+					}			
+					br.close();
+				
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return result;					
+		}
+	
+	
+	
+	
 
 }
