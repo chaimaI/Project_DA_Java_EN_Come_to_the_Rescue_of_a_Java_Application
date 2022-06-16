@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadSymptomDataFromFile {
+public class ReadSymptomDataFromFile implements IReadSymptomDataFromFile  {
+	
 	
 	 /**The method allows to read a file. 
 		It takes in parameter a string
@@ -19,21 +20,19 @@ public class ReadSymptomDataFromFile {
 			this.filepath = filepath;
 		}
 
-		public ReadSymptomDataFromFile() {	
-		}
 
-		public List<String> GetListSymptome(String filepath){	 
+		public List<String> getListSymptome(String filepath){	 
 			ArrayList<String> result = new ArrayList<String>();
-			String s;	
+			String lineSymptom;	
 				try {
-					File f = new File(filepath);
-					FileReader fr = new FileReader(f);
-					BufferedReader br = new BufferedReader(fr); 
+					File file = new File(filepath);
+					FileReader fileReader = new FileReader(file);
+					BufferedReader bufferedReader = new BufferedReader(fileReader); 
 							
-					while((s=br.readLine())!=null){		
-					result.add(s);
+					while((lineSymptom=bufferedReader.readLine())!=null){		
+					result.add(lineSymptom);
 					}			
-					br.close();
+					bufferedReader.close();
 				
 				} catch (IOException e) {
 					e.printStackTrace();

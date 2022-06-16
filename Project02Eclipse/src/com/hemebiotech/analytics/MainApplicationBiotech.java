@@ -1,6 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainApplicationBiotech {
 
@@ -9,22 +10,18 @@ public class MainApplicationBiotech {
 		// Lecture du fichier et retourne la liste des symptomes
 		
 				String file ="symptoms.txt";
-				
-				ReadSymptomDataFromFile rd = new ReadSymptomDataFromFile();
-				rd.GetListSymptome(file);
-				System.out.println(rd.GetListSymptome(file));
+				ReadSymptomDataFromFile syptomData = new ReadSymptomDataFromFile(file);
+				List<String> fileList = syptomData.getListSymptome(file);
+				System.out.println(fileList);
 		
 				// Retourne la liste des symptomes avec occurences (dans l'ordre alphabétique)		
-				 SymptomListOccurence oc = new SymptomListOccurence();
-				 oc.countFrequencies((ArrayList<String>)rd.GetListSymptome(file));
+				 SymptomListOccurence symptomOccurence = new SymptomListOccurence((ArrayList<String>)fileList);
+				 symptomOccurence.countFrequencies((ArrayList<String>)fileList);
 		
-				 // Génération d'un nouveau fichier text avec la liste des symptomes avec occurence (dans l'ordre alphabétique)	 
-				 
-				 ReadSymptomDataFromFile spt = new SymptomFile();				 
-				 spt.GetListSymptome(file);
-				 
-				 SymptomFile spt1 = new SymptomFile();				 
-				 spt1.FileSyptome((ArrayList<String>) spt.GetListSymptome(file));
+				 // Generation d'un nouveau fichier text avec la liste des symptomes avec occurence (dans l'ordre alphabétique)	 
+				 				 
+				 SymptomFile syptomFile = new SymptomFile((ArrayList<String>)fileList);				 
+				 syptomFile.fileSymptom((ArrayList<String>)fileList);
 	}
 
 }

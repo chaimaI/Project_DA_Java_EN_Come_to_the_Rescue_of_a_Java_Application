@@ -10,10 +10,9 @@ public interface IReadSymptomDataFromFile {
 	 * that may contain many duplications
 	 * 
 	 * The implementation does not need to order the list
-	 * 
 	 */
 	
-	List<String> GetListSymptome(String filepath);
+	List<String> getListSymptome(String filepath);
 	
 	
 	
