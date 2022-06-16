@@ -18,7 +18,7 @@ public class MainApplicationBiotech {
 				 SymptomListOccurence symptomOccurence = new SymptomListOccurence((ArrayList<String>)fileList);
 				 symptomOccurence.countFrequencies((ArrayList<String>)fileList);
 		
-				 // Génération d'un nouveau fichier text avec la liste des symptomes avec occurence (dans l'ordre alphabétique)	 
+				 // Generation d'un nouveau fichier text avec la liste des symptomes avec occurence (dans l'ordre alphabétique)	 
 				 				 
 				 SymptomFile syptomFile = new SymptomFile((ArrayList<String>)fileList);				 
 				 syptomFile.fileSymptom((ArrayList<String>)fileList);

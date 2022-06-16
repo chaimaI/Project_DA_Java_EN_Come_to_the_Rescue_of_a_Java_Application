@@ -15,11 +15,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class SymptomFile implements IWriteDataToFile{
+	
 	/** 
 	The first method takes a string as parameter and returns a list
-
 	The second method creates a text file that includes all the occurrences of the list in alphabetical order
-
 **/
 
 ArrayList<String> list;

@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ReadSymptomDataFromFile implements IReadSymptomDataFromFile  {
 	
+	
 	 /**The method allows to read a file. 
 		It takes in parameter a string
 		The method returns an unordered list without taking into account the duplicates.
