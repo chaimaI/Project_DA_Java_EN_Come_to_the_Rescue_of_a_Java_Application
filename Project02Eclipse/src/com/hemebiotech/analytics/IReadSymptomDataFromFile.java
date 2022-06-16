@@ -13,7 +13,7 @@ public interface IReadSymptomDataFromFile {
 	 * 
 	 */
 	
-	List<String> GetListSymptome(String filepath);
+	List<String> getListSymptome(String filepath);
 	
 	
 	

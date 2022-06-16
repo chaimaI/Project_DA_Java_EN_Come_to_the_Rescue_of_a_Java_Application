@@ -18,17 +18,14 @@ private ArrayList<String> list;
 	this.list = list;
 }
 
-	public SymptomListOccurence() {
-	}
-
 	public void countFrequencies(ArrayList<String> list)
     {
 		try {
 			Collections.sort(list);
-	        Set<String> st = new TreeSet<String>(list);
+	        Set<String> setList = new TreeSet<String>(list);
 	         
-	        for (String s : st)        	
-	            System.out.println(s + "= " + Collections.frequency(list, s)); 
+	        for (String symptom : setList)        	
+	            System.out.println(symptom + "= " + Collections.frequency(list, symptom)); 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

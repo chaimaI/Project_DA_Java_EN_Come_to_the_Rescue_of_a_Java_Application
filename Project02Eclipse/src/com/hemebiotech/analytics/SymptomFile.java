@@ -1,8 +1,10 @@
 package com.hemebiotech.analytics;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SymptomFile extends ReadSymptomDataFromFile{
+public class SymptomFile implements IWriteDataToFile{
 	/** 
 	The first method takes a string as parameter and returns a list
 
@@ -22,43 +24,53 @@ public class SymptomFile extends ReadSymptomDataFromFile{
 
 ArrayList<String> list;
 
-public SymptomFile(String filepath,ArrayList<String> list) {
-	super(filepath);
+public SymptomFile(ArrayList<String> list) {
+
 	this.list = list;
 }
 
 
-public SymptomFile() {
 
+public List<String> getListSymptome(String filepath){	 
+	ArrayList<String> result = new ArrayList<String>();
+	String lineSymptom;	
+		try {
+			File file = new File(filepath);
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader); 
+					
+			while((lineSymptom=bufferedReader.readLine())!=null){		
+			result.add(lineSymptom);
+			}			
+			bufferedReader.close();
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;					
 }
 
-@Override
-public List<String> GetListSymptome(String filepath) {
-	return super.GetListSymptome(filepath);
-}
-
-
-public void FileSyptome (ArrayList<String> list) { 
+public void fileSymptom (ArrayList<String> list) { 
 	
 	try
     {			
       //File name with path
       String fileName = "results.out.txt";
  
-      File myFile = new File(fileName);
-      FileOutputStream fos = new FileOutputStream(myFile);
-      OutputStreamWriter osw = new OutputStreamWriter(fos);    
-      Writer writer = new BufferedWriter(osw); 
+      File file = new File(fileName);
+      FileOutputStream streamfile = new FileOutputStream(file);
+      OutputStreamWriter streamWriter = new OutputStreamWriter(streamfile);    
+      Writer bufferedWriter = new BufferedWriter(streamWriter); 
       
      
       //Write data from an ArrayList
       Collections.sort(list);
-        Set<String> st = new TreeSet<String>(list);
+        Set<String> listSymptom = new TreeSet<String>(list);
         
-      for (String s : st) {
-        writer.write(s + "= " +Collections.frequency(list, s) +"\n" );	        	     
+      for (String symptom : listSymptom) {
+    	  bufferedWriter.write(symptom + "= " +Collections.frequency(list, symptom) +"\n" );	        	     
       }
-      writer.close();
+      bufferedWriter.close();
     } 
     catch (IOException e){
       System.out.println("An error occurred.");
